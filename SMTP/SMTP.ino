@@ -7,8 +7,8 @@
 #define TXD2 17  // Không cần nếu chỉ nhận
 
 // WiFi
-const char* ssid = "hat3";
-const char* password = "12341234";
+const char* ssid = "P201";
+const char* password = "21212121";
 
 // Gmail
 #define SMTP_HOST "smtp.gmail.com"
