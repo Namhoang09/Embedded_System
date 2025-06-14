@@ -2,6 +2,7 @@
 Hệ thống phát hiện và cảnh báo rò rỉ khí gas trong nhà
 
 CPU: vi điều khiển sử dụng vi xử lý STM32 thực hiện đọc cảm biến, xử lý ngưỡng và điều khiển các thiết bị cảnh báo.
+
 Các đầu vào:
 - Hệ thống sử dụng cảm biến gas như MQ-2 để phát hiện nồng độ khí gas (LPG, methane).
 - SW1 để chuyển đổi hệ thống giữa trạng thái hoạt động và trạng thái dừng. Khi hệ thống dừng hoạt động, nếu bấm SW1 bộ đếm chuyển sang trạng thái hoạt động, và ngược lại. Khi chuyển từ trạng thái dừng sang trạng thái hoạt động, hệ thống tiếp tục giám sát trạng thái của cảm biến đo khí gas và hiển thị trên LCD.
