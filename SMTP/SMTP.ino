@@ -4,7 +4,6 @@
 
 // Cấu hình UART
 #define RXD2 16  // RX ESP32 (nối TX STM32)
-#define TXD2 17  // Không cần nếu chỉ nhận
 
 // WiFi
 const char* ssid = "P201";
