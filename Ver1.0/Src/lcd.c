@@ -1,6 +1,7 @@
 #include "lcd.h"
 #include "i2c.h"
 #include "timer.h"
+#include <stdio.h>
 
 void LCD_Send_Cmd(uint8_t cmd) {
     LCD_Send_Byte(cmd, 0);			// Gửi lệnh
@@ -35,7 +36,7 @@ void LCD_Send_String(char *str) {
 
 void LCD_Update_State(uint16_t gas_ppm) {
     LCD_Set_Cursor(1, 7);			// Đặt vị trí con trỏ tại dòng 2 cột 7
-    // Hiển thị lên LCD
+
     if (gas_ppm <= SAFE_LEVEL) {
         LCD_Send_String("SAFE    ");
     } else if (gas_ppm <= ALERT_LEVEL) {
@@ -47,3 +48,10 @@ void LCD_Update_State(uint16_t gas_ppm) {
     }
 }
 
+void LCD_Update_PPM(uint16_t gas_ppm) {
+    LCD_Set_Cursor(0, 12);			// Đặt vị trí con trỏ tại dòng 1 cột 12
+
+    char buffer[10];
+    sprintf(buffer, "%-4d", gas_ppm);
+    LCD_Send_String(buffer);
+}

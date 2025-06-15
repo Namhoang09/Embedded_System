@@ -13,5 +13,6 @@ void LCD_Init(void);
 void LCD_Set_Cursor(uint8_t row, uint8_t col);
 void LCD_Send_String(char *str);
 void LCD_Update_State(uint16_t gas_ppm);
+void LCD_Update_PPM(uint16_t gas_ppm);
 
 #endif
