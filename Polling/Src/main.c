@@ -9,8 +9,8 @@
 #include <stdio.h>
 
 int main(void) {
-	TIM2_Init();
-	GPIO_Init();
+    TIM2_Init();
+    GPIO_Init();
     I2C1_Init();
     LCD_Init();
     ADC1_Init();
@@ -29,23 +29,17 @@ int main(void) {
     	gas_ppm = MQ2_Read_PPM();
 
     	if(paused_flag) {
+	    system_paused ^= 1;
     	    paused_flag = 0;
-    	    LCD_Set_Cursor(1, 7);
-    	    LCD_Send_String("STOP    ");
-    	    system_paused ^= 1;
     	}
 
     	if(reset_flag) {
-    		gas_ppm = 0;
+    	    gas_ppm = 0;
     	    reset_flag = 0;
     	    LCD_Update_PPM(gas_ppm);
     	    LCD_Set_Cursor(1, 7);
     	    LCD_Send_String("RESET   ");
     	    delay_ms(500);
-    	    if(system_paused) {
-    	    	LCD_Set_Cursor(1, 7);
-    	    	LCD_Send_String("STOP    ");
-    	    }
     	}
 
     	if(system_paused != prev_system_paused){
@@ -65,6 +59,8 @@ int main(void) {
     		System_Shutdown();
 
     		LCD_Update_PPM(gas_ppm);
+		LCD_Set_Cursor(1, 7);
+    	    	LCD_Send_String("STOP    ");
     		delay_ms(300);
     	} else {
     		LCD_Update_PPM(gas_ppm);
