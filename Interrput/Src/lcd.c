@@ -36,17 +36,22 @@ void LCD_Send_String(char *str) {
 
 void LCD_Update_State(uint16_t gas_ppm) {
     LCD_Set_Cursor(1, 7);			// Đặt vị trí con trỏ tại dòng 2 cột 7
-    char buffer[10];
-    sprintf(buffer, "%-5d", gas_ppm);
-    LCD_Send_String(buffer);
 
-//    if (gas_ppm <= SAFE_LEVEL) {
-//        LCD_Send_String("SAFE    ");
-//    } else if (gas_ppm <= ALERT_LEVEL) {
-//        LCD_Send_String("ALERT   ");
-//    } else if (gas_ppm <= DANGER_LEVEL) {
-//        LCD_Send_String("DANGER  ");
-//    } else {
-//        LCD_Send_String("CRITICAL");
-//    }
+    if (gas_ppm <= SAFE_LEVEL) {
+        LCD_Send_String("SAFE    ");
+    } else if (gas_ppm <= ALERT_LEVEL) {
+        LCD_Send_String("ALERT   ");
+    } else if (gas_ppm <= DANGER_LEVEL) {
+        LCD_Send_String("DANGER  ");
+    } else {
+        LCD_Send_String("CRITICAL");
+    }
+}
+
+void LCD_Update_PPM(uint16_t gas_ppm) {
+    LCD_Set_Cursor(0, 12);			// Đặt vị trí con trỏ tại dòng 1 cột 12
+
+    char buffer[10];
+    sprintf(buffer, "%-4d", gas_ppm);
+    LCD_Send_String(buffer);
 }

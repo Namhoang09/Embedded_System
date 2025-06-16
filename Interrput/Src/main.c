@@ -21,33 +21,31 @@ int main(void) {
     uint8_t lcd_update_flag = 0, system_paused = 0;
 
     LCD_Set_Cursor(0, 0);
-    LCD_Send_String("SYSTEM WORKING");
+    LCD_Send_String("W: ON  PPM: ");
     LCD_Set_Cursor(1, 0);
-    LCD_Send_String("PPM: ");
+    LCD_Send_String("STATE: ");
 
     while (1) {
-    	if (reset_flag) {
-    	    reset_flag = 0;
-    	    latest_ppm = 0;
-    	    LCD_Set_Cursor(1, 7);
-    	    LCD_Send_String("RESET   ");
-    	    lcd_update_flag = 1;
-    	    delay_ms(500);
-    	}
-
     	if (paused_flag) {
-    		LCD_Set_Cursor(0, 7);
-    		LCD_Send_String("CHANGE..");
-    		delay_ms(300);
-
     	    paused_flag = 0;
     	    system_paused ^= 1;
 
-    	    LCD_Set_Cursor(0, 7);
+    	    LCD_Set_Cursor(0, 3);
     	    if (system_paused)
-    	        LCD_Send_String("SHUTDOWN");
+    	    	LCD_Send_String("OFF");
     	    else
-    	        LCD_Send_String("WORKING ");
+    	    	LCD_Send_String("ON ");
+    	}
+
+    	if (reset_flag) {
+    	    reset_flag = 0;
+    	    latest_ppm = 0;
+    	    lcd_update_flag = 1;
+
+    	    LCD_Update_PPM(latest_ppm);
+    	    LCD_Set_Cursor(1, 7);
+    	    LCD_Send_String("RESET   ");
+    	    delay_ms(500);
     	}
 
     	if (new_adc_ready) {
@@ -75,7 +73,15 @@ int main(void) {
 
     	if (lcd_update_flag) {
     	    lcd_update_flag = 0;
-    	    LCD_Update_State(latest_ppm);
+
+    	    LCD_Update_PPM(latest_ppm);
+
+    	    if(system_paused) {
+    	        LCD_Set_Cursor(1, 7);
+    	        LCD_Send_String("STOP    ");
+    	    } else {
+    	    	LCD_Update_State(latest_ppm);
+    	    }
     	}
     }
 }
