@@ -65,12 +65,11 @@ int main(void) {
     	} else {
     		LCD_Update_PPM(gas_ppm);
     		LCD_Update_State(gas_ppm);
-    		delay_ms(300);
 
     		if (gas_ppm <= SAFE_LEVEL) {
-    			System_Safe();
+    		    System_Safe();
     		} else if (gas_ppm <= ALERT_LEVEL) {
-    			System_Alert();
+    		    System_Alert();
     		} else if (gas_ppm <= DANGER_LEVEL) {
     		    System_Danger();
 
@@ -80,7 +79,8 @@ int main(void) {
     		} else {
     		    System_Critical(gas_ppm);
     		}
+
+		delay_ms(300);
     	}
     }
-
 }
