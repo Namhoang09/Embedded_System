@@ -7,13 +7,13 @@
 
 // WiFi
 const char* ssid = "P201";
-const char* password = "21212121";
+const char* password = "********";
 
 // Gmail
 #define SMTP_HOST "smtp.gmail.com"
 #define SMTP_PORT 465
 #define AUTHOR_EMAIL "hnam910204@gmail.com"
-#define AUTHOR_PASSWORD "ghfd lllo gcgb evyn"
+#define AUTHOR_PASSWORD "**** **** **** ****"
 
 SMTPSession smtp;
 SMTP_Message message;
