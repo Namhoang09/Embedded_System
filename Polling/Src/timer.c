@@ -10,7 +10,7 @@ void TIM2_Init(void) {
 
 // Tạo hàm delay
 void delay_ms(uint32_t ms) {
-    TIM2->ARR = ms;           			// Thời gian đến khi tràn
+    TIM2->ARR = ms - 1;           		// Thời gian đến khi tràn
     TIM2->CNT = 0;            			// Đặt giá trị bộ đếm về 0
     TIM2->SR &= ~(1 << 0);    			// Xóa cờ tràn trước khi bắt đầu
     TIM2->CR1 |= (1 << 0);    			// Cho phép TIM2 bắt đầu đếm
