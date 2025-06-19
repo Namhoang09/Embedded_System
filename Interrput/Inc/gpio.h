@@ -15,10 +15,15 @@
 void GPIO_Init(void);
 void Turn_On_GPIO(uint16_t pin);
 void Turn_Off_GPIO(uint16_t pin);
+void Turn_On_Relay(void);
+void Turn_Off_Relay(void);
 void System_Shutdown(void);
 void System_Safe(void);
 void System_Alert(void);
 void System_Danger(void);
 void System_Critical(uint16_t gas_ppm);
+uint8_t check_press(uint16_t pin);
+
+extern volatile uint32_t speed;
 
 #endif

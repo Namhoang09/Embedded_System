@@ -26,7 +26,7 @@ int main(void) {
     LCD_Send_String("STATE: ");
 
     while (1) {
-    	if (paused_flag) {
+    	if (paused_flag && check_press(STOP_BUTTON)) {
     	    paused_flag = 0;
     	    system_paused ^= 1;
 
@@ -37,7 +37,7 @@ int main(void) {
     	    	LCD_Send_String("ON ");
     	}
 
-    	if (reset_flag) {
+    	if (reset_flag && check_press(RESET_BUTTON)) {
     	    reset_flag = 0;
     	    latest_ppm = 0;
     	    lcd_update_flag = 1;

@@ -88,3 +88,7 @@ void System_Critical(uint16_t gas_ppm) {
 	Turn_On_GPIO(RED_LED); 		delay_ms(speed);
 	Turn_Off_GPIO(RED_LED); 	delay_ms(speed);
 }
+
+uint8_t check_press(uint16_t pin) {
+    return !(GPIOA->IDR & (1 << pin));
+}
