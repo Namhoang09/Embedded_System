@@ -11,7 +11,7 @@ void USART2_Init(void) {
 	GPIOA->AFR[0] &= ~(0xF << (2 * 4));
 	GPIOA->AFR[0] |= 7 << (2 * 4);		// AF7: USART mode
 
-	USART2->BRR = 0x0683; 				// Baud rate = 9600 (16M/9600 = 1666.66 = 0x0683
+	USART2->BRR = 0x0683; 				// Baud rate = 9600 (16M/(16*9600) = 104.3 = 0x0683
 	USART2->CR1 |= 1 << 3; 				// Cho phép truyền dữ liệu
 	USART2->CR1 |= 1 << 13; 			// Bật USART2
 }
