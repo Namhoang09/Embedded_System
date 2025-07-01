@@ -1,4 +1,4 @@
-# Embedded_System
+# Gas Detected
 Hệ thống phát hiện và cảnh báo rò rỉ khí gas trong nhà
 
 CPU: vi điều khiển sử dụng vi xử lý STM32 thực hiện đọc cảm biến, xử lý ngưỡng và điều khiển các thiết bị cảnh báo.
